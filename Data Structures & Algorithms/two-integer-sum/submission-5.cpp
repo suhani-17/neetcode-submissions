@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> ans;
+        
+        for(int i = 0; i< nums.size(); i++){
+          if(!ans.count(nums[i])) {   // only set if not already present
+                ans[nums[i]] = i;
+            }
+        }
+
+        for(int i = 0; i<nums.size(); i++){
+            int dif = target - nums[i];
+            if(ans.count(dif) && ans[dif] != i){
+                int mini = min(i, ans[dif]);
+                int maxi = max(i, ans[dif]);
+                return{mini, maxi};
+            }
+        }
+        return {};
+    }
+};
